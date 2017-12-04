@@ -17,10 +17,14 @@ from django.conf.urls import *
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from todoapp import views as todoapp_views
+from django.conf.urls import url, include
 
 admin.autodiscover()
 
 urlpatterns = [
    url(r'^admin/', admin.site.urls),
-   url(r'^$', todoapp_views.index, name='index'),
+   
+   url(r'^todo/', include('todoapp.urls'), name='todo_list'),
+   #url(r'^todo_form/', todoapp_views.todo_list, name='todo_list'),
+   #url(r'^$', todoapp_views.add_todo, name='add_todo'),
    ]
