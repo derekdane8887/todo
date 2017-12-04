@@ -1,0 +1,35 @@
+ALTER ROLE derek SET client_encoding TO 'utf8'
+ALTER ROLE derek SET default_transaction_isolation TO 'read committed'
+ALTER ROLE derek SET timezone TO 'UTC'
+create database todo_db;
+create user derek with password 'Jumpman1'
+sudo -u postgres psql
+alter user django_user password 'Jumpman1';
+CREATE USER django_user WITH PASSWORD 'Jumpman1';
+
+GRANT ALL PRIVILEGES ON DATABASE todo_db TO django_user;
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+
+
+SHOW hba_file;
+
+You have to configure the following two files
+
+pg_hba.conf
+
+host all all 0.0.0.0/0 md5
+postgresql.conf
+
+listen_addresses='*'
+
+Create a firewall rule in windows
+sudo /etc/init.d/postgresql restart
+
+django super user derek Jumpman1
