@@ -25,6 +25,7 @@ urlpatterns = [
    url(r'^admin/', admin.site.urls),
    
    url(r'^todo/', include('todoapp.urls'), name='todo_list'),
+   url(r'^tinymce/', include('tinymce.urls')),
    #url(r'^todo_form/', todoapp_views.todo_list, name='todo_list'),
    #url(r'^$', todoapp_views.add_todo, name='add_todo'),
    ]
