@@ -17,7 +17,7 @@ from django.conf.urls import *
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from todoapp import views as todoapp_views
-from django.conf.urls import url, include
+
 
 admin.autodiscover()
 

@@ -5,7 +5,10 @@ from models import todo
 from django.shortcuts import render_to_response
 from django.shortcuts import render
 from .forms import TodoForm
- 
+from django.shortcuts import redirect
+
+from django.utils import timezone
+import datetime
  
  #Define our function, accept a request
 def todo_list(request): 
@@ -15,11 +18,16 @@ def todo_list(request):
     return render_to_response('task_list.html', {'items': items})	
 	
 def add_todo(request):
+    form = TodoForm()
+    
     if request.method == "POST":
         form = TodoForm(request.POST)
         if form.is_valid():
-            todo_item = form.save(commit=False)
-    	    todo_item.save()
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('task_list.html', pk=post.pk)
     else:
         form = TodoForm()
     return render(request, 'TodoForm.html', {'form': form})	
